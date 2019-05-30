@@ -109,7 +109,7 @@ This section helps you create, get, update, and delete the Microsoft peering con
    Run the following example to configure Microsoft peering for your circuit:
 
    ```azurecli-interactive
-   az network express-route peering create --circuit-name MyCircuit --peer-asn 100 --primary-peer-subnet 123.0.0.0/30 -g ExpressRouteResourceGroup --secondary-peer-subnet 123.0.0.4/30 --vlan-id 300 --peering-type MicrosoftPeering --advertised-public-prefixes 123.1.0.0/24
+   az network express-route peering create --circuit-name MyCircuit --peer-asn 100 --primary-peer-subnet 123.0.0.0/30 -g ExpressRouteResourceGroup --secondary-peer-subnet 123.0.0.4/30 --vlan-id 300 --name MicrosoftPeering --advertised-public-prefixes 123.1.0.0/24
    ```
 
 ### <a name="getmsft"></a>To view Microsoft peering details
@@ -117,7 +117,7 @@ This section helps you create, get, update, and delete the Microsoft peering con
 You can get configuration details by using the following example:
 
 ```azurecli-interactive
-az network express-route peering show -g ExpressRouteResourceGroup --circuit-name MyCircuit --name AzureMicrosoftPeering
+az network express-route peering show -g ExpressRouteResourceGroup --circuit-name MyCircuit --name MicrosoftPeering
 ```
 
 The output is similar to the following example:
@@ -127,7 +127,7 @@ The output is similar to the following example:
   "azureAsn": 12076,
   "etag": "W/\"2e97be83-a684-4f29-bf3c-96191e270666\"",
   "gatewayManagerEtag": "18",
-  "id": "/subscriptions/9a0c2943-e0c2-4608-876c-e0ddffd1211b/resourceGroups/ExpressRouteResourceGroup/providers/Microsoft.Network/expressRouteCircuits/MyCircuit/peerings/AzureMicrosoftPeering",
+  "id": "/subscriptions/9a0c2943-e0c2-4608-876c-e0ddffd1211b/resourceGroups/ExpressRouteResourceGroup/providers/Microsoft.Network/expressRouteCircuits/MyCircuit/peerings/MicrosoftPeering",
   "lastModifiedBy": "Customer",
   "microsoftPeeringConfig": {
     "advertisedPublicPrefixes": [
@@ -137,9 +137,9 @@ The output is similar to the following example:
      "customerASN": ,
      "routingRegistryName": ""
   }
-  "name": "AzureMicrosoftPeering",
+  "name": "MicrosoftPeering",
   "peerAsn": ,
-  "peeringType": "AzureMicrosoftPeering",
+  "peeringType": "MicrosoftPeering",
   "primaryAzurePort": "",
   "primaryPeerAddressPrefix": "",
   "provisioningState": "Succeeded",
@@ -159,13 +159,13 @@ The output is similar to the following example:
 You can update any part of the configuration. The advertised prefixes of the circuit are being updated from 123.1.0.0/24 to 124.1.0.0/24 in the following example:
 
 ```azurecli-interactive
-az network express-route peering update --circuit-name MyCircuit -g ExpressRouteResourceGroup --peering-type MicrosoftPeering --advertised-public-prefixes 124.1.0.0/24
+az network express-route peering update --circuit-name MyCircuit -g ExpressRouteResourceGroup --name MicrosoftPeering --advertised-public-prefixes 124.1.0.0/24
 ```
 
 ### <a name="addIPv6msft"></a>To add IPv6 Microsoft peering settings to an existing IPv4 configuration
 
 ```azurecli-interactive
-az network express-route peering update -g ExpressRouteResourceGroup --circuit-name MyCircuit --peering-type MicrosoftPeering --ip-version ipv6 --primary-peer-subnet 2002:db00::/126 --secondary-peer-subnet 2003:db00::/126 --advertised-public-prefixes 2002:db00::/126
+az network express-route peering update -g ExpressRouteResourceGroup --circuit-name MyCircuit --name MicrosoftPeering --ip-version ipv6 --primary-peer-subnet 2002:db00::/126 --secondary-peer-subnet 2003:db00::/126 --advertised-public-prefixes 2002:db00::/126
 ```
 
 ### <a name="deletemsft"></a>To delete Microsoft peering
@@ -243,13 +243,13 @@ This section helps you create, get, update, and delete the Azure private peering
    Use the following example to configure Azure private peering for your circuit:
 
    ```azurecli-interactive
-   az network express-route peering create --circuit-name MyCircuit --peer-asn 100 --primary-peer-subnet 10.0.0.0/30 -g ExpressRouteResourceGroup --secondary-peer-subnet 10.0.0.4/30 --vlan-id 200 --peering-type AzurePrivatePeering
+   az network express-route peering create --circuit-name MyCircuit --peer-asn 100 --primary-peer-subnet 10.0.0.0/30 -g ExpressRouteResourceGroup --secondary-peer-subnet 10.0.0.4/30 --vlan-id 200 --name AzurePrivatePeering
    ```
 
    If you choose to use an MD5 hash, use the following example:
 
    ```azurecli-interactive
-   az network express-route peering create --circuit-name MyCircuit --peer-asn 100 --primary-peer-subnet 10.0.0.0/30 -g ExpressRouteResourceGroup --secondary-peer-subnet 10.0.0.4/30 --vlan-id 200 --peering-type AzurePrivatePeering --SharedKey "A1B2C3D4"
+   az network express-route peering create --circuit-name MyCircuit --peer-asn 100 --primary-peer-subnet 10.0.0.0/30 -g ExpressRouteResourceGroup --secondary-peer-subnet 10.0.0.4/30 --vlan-id 200 --name AzurePrivatePeering --SharedKey "A1B2C3D4"
    ```
 
    > [!IMPORTANT]
@@ -385,13 +385,13 @@ This section helps you create, get, update, and delete the Azure public peering 
    Run the following example to configure Azure public peering for your circuit:
 
    ```azurecli-interactive
-   az network express-route peering create --circuit-name MyCircuit --peer-asn 100 --primary-peer-subnet 12.0.0.0/30 -g ExpressRouteResourceGroup --secondary-peer-subnet 12.0.0.4/30 --vlan-id 200 --peering-type AzurePublicPeering
+   az network express-route peering create --circuit-name MyCircuit --peer-asn 100 --primary-peer-subnet 12.0.0.0/30 -g ExpressRouteResourceGroup --secondary-peer-subnet 12.0.0.4/30 --vlan-id 200 --name AzurePublicPeering
    ```
 
    If you choose to use an MD5 hash, use the following example:
 
    ```azurecli-interactive
-   az network express-route peering create --circuit-name MyCircuit --peer-asn 100 --primary-peer-subnet 12.0.0.0/30 -g ExpressRouteResourceGroup --secondary-peer-subnet 12.0.0.4/30 --vlan-id 200 --peering-type AzurePublicPeering --SharedKey "A1B2C3D4"
+   az network express-route peering create --circuit-name MyCircuit --peer-asn 100 --primary-peer-subnet 12.0.0.0/30 -g ExpressRouteResourceGroup --secondary-peer-subnet 12.0.0.4/30 --vlan-id 200 --name AzurePublicPeering --SharedKey "A1B2C3D4"
    ```
 
    > [!IMPORTANT]
